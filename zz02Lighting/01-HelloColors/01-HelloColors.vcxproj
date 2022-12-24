@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d0eef696-d3fa-4083-b0de-db649badaa16}</ProjectGuid>
-    <RootNamespace>My01HelloWindow</RootNamespace>
+    <ProjectGuid>{58C47516-C38D-403A-86AC-481DAB2418BD}</ProjectGuid>
+    <RootNamespace>My04HelloShaders</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -145,7 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="01-HelloWindow.cpp" />
+    <ClCompile Include="01-HelloColors.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
