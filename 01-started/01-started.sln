@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02-hello-triangle", "02-hel
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02-hello-triangle-2", "02-hello-triangle-2\02-hello-triangle-2.vcxproj", "{7D808BF3-3A10-4DDE-88D9-1FAE2EBAB217}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03-hello-shader", "03-hello-shader\03-hello-shader.vcxproj", "{26CDA6C5-56E4-4F29-8057-C4286319101C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03-hello-shader-2", "03-hello-shader-2\03-hello-shader-2.vcxproj", "{A5CBEFC4-78CD-466D-83C0-9BBDC163A22D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +45,22 @@ Global
 		{7D808BF3-3A10-4DDE-88D9-1FAE2EBAB217}.Release|x64.Build.0 = Release|x64
 		{7D808BF3-3A10-4DDE-88D9-1FAE2EBAB217}.Release|x86.ActiveCfg = Release|Win32
 		{7D808BF3-3A10-4DDE-88D9-1FAE2EBAB217}.Release|x86.Build.0 = Release|Win32
+		{26CDA6C5-56E4-4F29-8057-C4286319101C}.Debug|x64.ActiveCfg = Debug|x64
+		{26CDA6C5-56E4-4F29-8057-C4286319101C}.Debug|x64.Build.0 = Debug|x64
+		{26CDA6C5-56E4-4F29-8057-C4286319101C}.Debug|x86.ActiveCfg = Debug|Win32
+		{26CDA6C5-56E4-4F29-8057-C4286319101C}.Debug|x86.Build.0 = Debug|Win32
+		{26CDA6C5-56E4-4F29-8057-C4286319101C}.Release|x64.ActiveCfg = Release|x64
+		{26CDA6C5-56E4-4F29-8057-C4286319101C}.Release|x64.Build.0 = Release|x64
+		{26CDA6C5-56E4-4F29-8057-C4286319101C}.Release|x86.ActiveCfg = Release|Win32
+		{26CDA6C5-56E4-4F29-8057-C4286319101C}.Release|x86.Build.0 = Release|Win32
+		{A5CBEFC4-78CD-466D-83C0-9BBDC163A22D}.Debug|x64.ActiveCfg = Debug|x64
+		{A5CBEFC4-78CD-466D-83C0-9BBDC163A22D}.Debug|x64.Build.0 = Debug|x64
+		{A5CBEFC4-78CD-466D-83C0-9BBDC163A22D}.Debug|x86.ActiveCfg = Debug|Win32
+		{A5CBEFC4-78CD-466D-83C0-9BBDC163A22D}.Debug|x86.Build.0 = Debug|Win32
+		{A5CBEFC4-78CD-466D-83C0-9BBDC163A22D}.Release|x64.ActiveCfg = Release|x64
+		{A5CBEFC4-78CD-466D-83C0-9BBDC163A22D}.Release|x64.Build.0 = Release|x64
+		{A5CBEFC4-78CD-466D-83C0-9BBDC163A22D}.Release|x86.ActiveCfg = Release|Win32
+		{A5CBEFC4-78CD-466D-83C0-9BBDC163A22D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
