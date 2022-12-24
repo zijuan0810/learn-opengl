@@ -1,0 +1,8 @@
+# EditorConfig is awesome: https://EditorConfig.org
+# All files
+[*]
+guidelines = 120
+
+# C# or VB files
+[*.{cs,vb}]
+guidelines = 120, 120
