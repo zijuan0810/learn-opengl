@@ -30,7 +30,7 @@ public:
 		try {
 			vShaderFile.open(vertexPath);
 			fShaderFile.open(fragmentPath);
-			
+
 			std::stringstream vShaderStream, fShaderStream;
 			vShaderStream << vShaderFile.rdbuf();
 			fShaderStream << fShaderFile.rdbuf();
@@ -42,7 +42,7 @@ public:
 			fShaderFile.close();
 		}
 		catch (std::ifstream::failure& e) {
-			std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+			std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << e.what() << std::endl;
 		}
 
 		const char* vShaderCode = vertexCode.c_str();
