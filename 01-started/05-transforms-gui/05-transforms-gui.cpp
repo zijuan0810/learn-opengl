@@ -1,23 +1,10 @@
 //#define _CRT_SECURE_NO_WARNINGS
 //
 //#include "imgui/imgui.h"
-//#include "imgui/imgui_impl_glfw.h"
-//#include "imgui/imgui_impl_opengl3.h"
-//
-//#include <glad/glad.h>
-//#include <glfw/glfw3.h>
-//#include <learn/Shaders.h>
-//#include <iostream>
-//#include <filesystem>
-//
-//#define STB_IMAGE_IMPLEMENTATION
-//#include "stb_image.h"
-
-#include "satan.h"
+#include "satan/satan.h"
+#include "satan/shader.h"
 
 void process_input(GLFWwindow* window);
-unsigned int get_texture(const char* filename, bool flipY);
-unsigned int get_square();
 
 int main(int argc, char* argv[])
 {
@@ -27,18 +14,14 @@ int main(int argc, char* argv[])
 	//basePath = std::filesystem::path(argv[0]).parent_path();
 	auto basePath = std::filesystem::path(argv[0]).remove_filename();
 	basePath = currentPath / basePath;
-	std::cout << "[DEBUG] Executable name/path: " << argv[0] << std::endl
-		<< "parent path: " << basePath << std::endl << std::endl;
+	std::cout << "[DEBUG] Executable name/path: " << argv[0] << std::endl;
 
 	satan::init();
-	//satan::init_glfw();
-	//satan::init_glad();
-	//satan::init_imgui();
 
-	Shader ourShader("shader.vs.glsl", "shader.fs.glsl");
-	unsigned int squareId = get_square();
-	unsigned int textureId1 = get_texture("../../res/textures/container.jpg", true);
-	unsigned int textureId2 = get_texture("../../res/textures/grass.png", true);
+	satan::shader shader("shader.vs.glsl", "shader.fs.glsl");
+	unsigned int squareId = satan::get_square();
+	unsigned int textureId1 = satan::get_texture("../../res/textures/container.jpg", true);
+	unsigned int textureId2 = satan::get_texture("../../res/textures/grass.png", true);
 
 	// Our state
 	bool show_demo_window = true;
@@ -101,10 +84,10 @@ int main(int argc, char* argv[])
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		ourShader.use();
-		ourShader.setFloat("glfw_time", glfwGetTime());
-		ourShader.setInt("texture1", 0);
-		ourShader.setInt("texture2", 1);
+		shader.use();
+		shader.setFloat("glfw_time", glfwGetTime());
+		shader.setInt("texture1", 0);
+		shader.setInt("texture2", 1);
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureId1);
@@ -133,79 +116,3 @@ void process_input(GLFWwindow* window)
 		glfwSetWindowShouldClose(window, true);
 }
 
-unsigned int get_square()
-{
-	float vertices[] = {
-		//---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
-		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
-		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
-	   -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
-	   -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
-	};
-
-	unsigned int indices[] = {
-		// 注意索引从0开始! 
-		// 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
-		// 这样可以由下标代表顶点组合成矩形
-		0, 1, 3, // 第一个三角形
-		1, 2, 3  // 第二个三角形
-	};
-
-	unsigned int VBO, VAO, EBO;
-	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &EBO);
-
-	glBindVertexArray(VAO);
-
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
-	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	glEnableVertexAttribArray(2);
-
-	return VAO;
-}
-
-unsigned int get_texture(const char* filename, bool flipY)
-{
-	unsigned int texture;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	//为当前绑定的纹理对象设置环绕、过滤方式
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	//加载并生成纹理
-	stbi_set_flip_vertically_on_load(flipY);
-	int width, height, nrChannels;
-	unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
-	if (data != nullptr) {
-		auto extension = std::filesystem::path(filename).extension();
-		if (extension.string() == ".png") {
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		}
-		else
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else {
-		std::cout << "Failed to load texture" << std::endl;
-	}
-	stbi_image_free(data);
-	return texture;
-}

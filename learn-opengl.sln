@@ -30,6 +30,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imgui", "libs\imgui\imgui.v
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glad", "libs\glad\glad.vcxproj", "{611B3ED4-6028-4BE4-8919-B1A55D5A3C20}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "satan", "libs\satan\satan.vcxproj", "{77EED9B3-16B4-40FD-BD1E-5D11A062D079}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -118,6 +120,14 @@ Global
 		{611B3ED4-6028-4BE4-8919-B1A55D5A3C20}.Release|x64.Build.0 = Release|x64
 		{611B3ED4-6028-4BE4-8919-B1A55D5A3C20}.Release|x86.ActiveCfg = Release|Win32
 		{611B3ED4-6028-4BE4-8919-B1A55D5A3C20}.Release|x86.Build.0 = Release|Win32
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079}.Debug|x64.ActiveCfg = Debug|x64
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079}.Debug|x64.Build.0 = Debug|x64
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079}.Debug|x86.ActiveCfg = Debug|Win32
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079}.Debug|x86.Build.0 = Debug|Win32
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079}.Release|x64.ActiveCfg = Release|x64
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079}.Release|x64.Build.0 = Release|x64
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079}.Release|x86.ActiveCfg = Release|Win32
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +143,7 @@ Global
 		{9F5CF17C-BA02-4F08-A443-799DD239269C} = {BF3B132E-7A3B-41F1-8FBB-D3AC12FEF33C}
 		{46AF5AA3-C5EC-433A-9439-D2FD98456380} = {F8C5678C-EADF-48FC-B9B4-4EA148759A9C}
 		{611B3ED4-6028-4BE4-8919-B1A55D5A3C20} = {F8C5678C-EADF-48FC-B9B4-4EA148759A9C}
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079} = {F8C5678C-EADF-48FC-B9B4-4EA148759A9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AE20D12A-98B5-428C-B399-F65DC7D15CF5}

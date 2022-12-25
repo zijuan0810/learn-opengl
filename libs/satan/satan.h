@@ -13,6 +13,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+#include "log.h"
+
 
 namespace satan
 {
@@ -44,18 +46,16 @@ namespace satan
 		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 		float xscale, yscale;
 		glfwGetMonitorContentScale(monitor, &xscale, &yscale);
-		std::cout << "[INFO] Monitor scale: " << xscale << "x" << yscale << std::endl;
-		if (xscale > 1 || yscale > 1)
-		{
+		log::info("Monitor scale: %.2f x %.2f", xscale, yscale);
+		if (xscale > 1 || yscale > 1) {
 			highDPIscaleFactor = xscale;
 			glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_TRUE);
 		}
 #endif
 
 		window = glfwCreateWindow(width, height, title, nullptr, nullptr);
-		if (window == nullptr)
-		{
-			std::cout << "Failed to create GLFW Window" << std::endl;
+		if (window == nullptr) {
+			log::error("Failed to create GLFW Window");
 			glfwTerminate();
 			return false;
 		}
@@ -72,6 +72,8 @@ namespace satan
 		glfwMakeContextCurrent(window);
 		glfwSwapInterval(1); // VSync
 
+		log::info("GLFW initialized");
+
 		return true;
 	}
 
@@ -80,20 +82,16 @@ namespace satan
 		// load all OpenGL function pointers with glad
 		// without it not all the OpenGL functions will be available,
 		// such as glGetString(GL_RENDERER), and application might just segfault
-		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-		{
-			std::cerr << "[ERROR] Couldn't initialize GLAD" << std::endl;
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+			log::error("Couldn't initialize GLAD");
 			return false;
 		}
-		else
-		{
-			std::cout << "[INFO] GLAD initialized" << std::endl;
+		else {
+			log::info("GLAD initialized");
 		}
 
-		std::cout << "[INFO] OpenGL renderer: " << glGetString(GL_RENDERER) << std::endl;
-		std::cout << "[INFO] OpenGL from glad "
-			<< GLVersion.major << "." << GLVersion.minor
-			<< std::endl;
+		log::info("OpenGL renderer: %s", glGetString(GL_RENDERER));
+		log::info("OpenGL from glad %d.%d", GLVersion.major, GLVersion.minor);
 
 		return true;
 	}
@@ -198,6 +196,8 @@ namespace satan
 		IM_ASSERT(font != NULL);
 
 		satan::set_imgui_style(highDPIscaleFactor);
+
+		log::info("ImGUI initialized");
 	}
 
 	void init()
@@ -205,6 +205,83 @@ namespace satan
 		init_glfw();
 		init_glad();
 		init_imgui();
+	}
+
+	unsigned int get_square()
+	{
+		float vertices[] = {
+			//---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
+			0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
+			0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
+		   -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
+		   -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
+		};
+
+		unsigned int indices[] = {
+			// 注意索引从0开始! 
+			// 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
+			// 这样可以由下标代表顶点组合成矩形
+			0, 1, 3, // 第一个三角形
+			1, 2, 3  // 第二个三角形
+		};
+
+		unsigned int VBO, VAO, EBO;
+		glGenVertexArrays(1, &VAO);
+		glGenBuffers(1, &VBO);
+		glGenBuffers(1, &EBO);
+
+		glBindVertexArray(VAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+		// position attribute
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
+		// color attribute
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+		glEnableVertexAttribArray(1);
+		// texture coord attribute
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		glEnableVertexAttribArray(2);
+
+		return VAO;
+	}
+
+	unsigned int get_texture(const char* filename, bool flipY)
+	{
+		unsigned int texture;
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		//为当前绑定的纹理对象设置环绕、过滤方式
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		//加载并生成纹理
+		stbi_set_flip_vertically_on_load(flipY);
+		int width, height, nrChannels;
+		unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
+		if (data != nullptr) {
+			auto extension = std::filesystem::path(filename).extension();
+			if (extension.string() == ".png") {
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			}
+			else
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D);
+		}
+		else {
+			log::error("Failed to load texture: %s", filename);
+		}
+		stbi_image_free(data);
+		return texture;
 	}
 
 	static std::string now()
