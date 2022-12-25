@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="05-transforms-gui.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader.fs.glsl" />
+    <None Include="shader.vs.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\libs\satan.h" />
+  </ItemGroup>
+</Project>

@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "04-hello-texture", "04-hell
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "04-hello-texture-2", "04-hello-texture-2\04-hello-texture-2.vcxproj", "{D42EB1E4-1A68-4570-A661-EAA2C4527D3A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "05-transforms-gui", "05-transforms-gui\05-transforms-gui.vcxproj", "{9F5CF17C-BA02-4F08-A443-799DD239269C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +83,14 @@ Global
 		{D42EB1E4-1A68-4570-A661-EAA2C4527D3A}.Release|x64.Build.0 = Release|x64
 		{D42EB1E4-1A68-4570-A661-EAA2C4527D3A}.Release|x86.ActiveCfg = Release|Win32
 		{D42EB1E4-1A68-4570-A661-EAA2C4527D3A}.Release|x86.Build.0 = Release|Win32
+		{9F5CF17C-BA02-4F08-A443-799DD239269C}.Debug|x64.ActiveCfg = Debug|x64
+		{9F5CF17C-BA02-4F08-A443-799DD239269C}.Debug|x64.Build.0 = Debug|x64
+		{9F5CF17C-BA02-4F08-A443-799DD239269C}.Debug|x86.ActiveCfg = Debug|Win32
+		{9F5CF17C-BA02-4F08-A443-799DD239269C}.Debug|x86.Build.0 = Debug|Win32
+		{9F5CF17C-BA02-4F08-A443-799DD239269C}.Release|x64.ActiveCfg = Release|x64
+		{9F5CF17C-BA02-4F08-A443-799DD239269C}.Release|x64.Build.0 = Release|x64
+		{9F5CF17C-BA02-4F08-A443-799DD239269C}.Release|x86.ActiveCfg = Release|Win32
+		{9F5CF17C-BA02-4F08-A443-799DD239269C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
