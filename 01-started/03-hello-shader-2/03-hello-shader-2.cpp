@@ -32,7 +32,7 @@ int main()
 
 	glViewport(0, 0, 800, 600);
 
-	Shader ourShader("vertex.glsl", "fragment.glsl");
+	Shader ourShader("shader.vs.glsl", "shader.fs.glsl");
 
 	float vertices[] = {
 		// Î»ÖÃ              // ÑÕÉ«
