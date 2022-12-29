@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
@@ -162,6 +162,87 @@ namespace satan
 		style.ScaleAllSizes(highDPIscaleFactor);
 	}
 
+	void set_imgui_style2(bool bStyleDark_ = true, float alpha_ = 1.0f)
+	{
+		ImGuiStyle& style = ImGui::GetStyle();
+
+		// light style from PacÃ´me Danhiez (user itamago) https://github.com/ocornut/imgui/pull/511#issuecomment-175719267
+		style.Alpha = 1.0f;
+		style.FrameRounding = 3.0f;
+		style.Colors[ImGuiCol_Text] = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+		style.Colors[ImGuiCol_TextDisabled] = ImVec4(0.60f, 0.60f, 0.60f, 1.00f);
+		style.Colors[ImGuiCol_WindowBg] = ImVec4(0.94f, 0.94f, 0.94f, 0.94f);
+		style.Colors[ImGuiCol_ChildBg] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+		style.Colors[ImGuiCol_PopupBg] = ImVec4(1.00f, 1.00f, 1.00f, 0.94f);
+		style.Colors[ImGuiCol_Border] = ImVec4(0.00f, 0.00f, 0.00f, 0.39f);
+		style.Colors[ImGuiCol_BorderShadow] = ImVec4(1.00f, 1.00f, 1.00f, 0.10f);
+		style.Colors[ImGuiCol_FrameBg] = ImVec4(1.00f, 1.00f, 1.00f, 0.94f);
+		style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.40f);
+		style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.26f, 0.59f, 0.98f, 0.67f);
+		style.Colors[ImGuiCol_TitleBg] = ImVec4(0.96f, 0.96f, 0.96f, 1.00f);
+		style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(1.00f, 1.00f, 1.00f, 0.51f);
+		style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.82f, 0.82f, 0.82f, 1.00f);
+		style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.86f, 0.86f, 0.86f, 1.00f);
+		style.Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.98f, 0.98f, 0.98f, 0.53f);
+		style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.69f, 0.69f, 0.69f, 1.00f);
+		style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.59f, 0.59f, 0.59f, 1.00f);
+		style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.49f, 0.49f, 0.49f, 1.00f);
+		style.Colors[ImGuiCol_PopupBg] = ImVec4(0.86f, 0.86f, 0.86f, 0.99f);
+		style.Colors[ImGuiCol_CheckMark] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+		style.Colors[ImGuiCol_SliderGrab] = ImVec4(0.24f, 0.52f, 0.88f, 1.00f);
+		style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+		style.Colors[ImGuiCol_Button] = ImVec4(0.26f, 0.59f, 0.98f, 0.40f);
+		style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+		style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.06f, 0.53f, 0.98f, 1.00f);
+		style.Colors[ImGuiCol_Header] = ImVec4(0.26f, 0.59f, 0.98f, 0.31f);
+		style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.80f);
+		style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+		style.Colors[ImGuiCol_Separator] = ImVec4(0.39f, 0.39f, 0.39f, 1.00f);
+		style.Colors[ImGuiCol_SeparatorHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.78f);
+		style.Colors[ImGuiCol_SeparatorActive] = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+		style.Colors[ImGuiCol_ResizeGrip] = ImVec4(1.00f, 1.00f, 1.00f, 0.50f);
+		style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.26f, 0.59f, 0.98f, 0.67f);
+		style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.26f, 0.59f, 0.98f, 0.95f);
+		style.Colors[ImGuiCol_PlotLines] = ImVec4(0.39f, 0.39f, 0.39f, 1.00f);
+		style.Colors[ImGuiCol_PlotLinesHovered] = ImVec4(1.00f, 0.43f, 0.35f, 1.00f);
+		style.Colors[ImGuiCol_PlotHistogram] = ImVec4(0.90f, 0.70f, 0.00f, 1.00f);
+		style.Colors[ImGuiCol_PlotHistogramHovered] = ImVec4(1.00f, 0.60f, 0.00f, 1.00f);
+		style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.26f, 0.59f, 0.98f, 0.35f);
+		style.Colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.20f, 0.20f, 0.20f, 0.35f);
+
+		if (bStyleDark_)
+		{
+			for (int i = 0; i <= ImGuiCol_COUNT; i++)
+			{
+				ImVec4& col = style.Colors[i];
+				float H, S, V;
+				ImGui::ColorConvertRGBtoHSV(col.x, col.y, col.z, H, S, V);
+
+				if (S < 0.1f)
+					V = 1.0f - V;
+				ImGui::ColorConvertHSVtoRGB(H, S, V, col.x, col.y, col.z);
+				if (col.w < 1.00f)
+					col.w *= alpha_;
+			}
+		}
+		else
+		{
+			for (int i = 0; i <= ImGuiCol_COUNT; i++)
+			{
+				ImVec4& col = style.Colors[i];
+				if (col.w < 1.00f)
+				{
+					col.x *= alpha_;
+					col.y *= alpha_;
+					col.z *= alpha_;
+					col.w *= alpha_;
+				}
+			}
+		}
+
+		style.ScaleAllSizes(highDPIscaleFactor);
+	}
+
 	void init_imgui()
 	{
 		// Setup Dear ImGui context
@@ -191,11 +272,13 @@ namespace satan
 		//io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\segoeui.ttf", 18.0f);
 		//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
 		//io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f);
-		auto font = io.Fonts->AddFontFromFileTTF("../../res/fonts/Cousine-Regular.ttf", 15.0f * highDPIscaleFactor);
+		//auto font = io.Fonts->AddFontFromFileTTF("../../res/fonts/Cousine-Regular.ttf", 15.0f * highDPIscaleFactor);
+		auto font = io.Fonts->AddFontFromFileTTF("../../res/fonts/Roboto-Regular.ttf", 16.0f * highDPIscaleFactor);
 		//ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
 		IM_ASSERT(font != NULL);
 
-		satan::set_imgui_style(highDPIscaleFactor);
+		//satan::set_imgui_style();
+		satan::set_imgui_style2(true, 0.5f);
 
 		log::info("ImGUI initialized");
 	}
@@ -210,19 +293,19 @@ namespace satan
 	unsigned int get_square()
 	{
 		float vertices[] = {
-			//---- Î»ÖÃ ----       ---- ÑÕÉ« ----     - ÎÆÀí×ø±ê -
-			0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // ÓÒÉÏ
-			0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // ÓÒÏÂ
-		   -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // ×óÏÂ
-		   -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // ×óÉÏ
+			//---- ä½ç½® ----       ---- é¢œè‰² ----     - çº¹ç†åæ ‡ -
+			0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // å³ä¸Š
+			0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // å³ä¸‹
+		   -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // å·¦ä¸‹
+		   -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // å·¦ä¸Š
 		};
 
 		unsigned int indices[] = {
-			// ×¢ÒâË÷Òı´Ó0¿ªÊ¼! 
-			// ´ËÀıµÄË÷Òı(0,1,2,3)¾ÍÊÇ¶¥µãÊı×éverticesµÄÏÂ±ê£¬
-			// ÕâÑù¿ÉÒÔÓÉÏÂ±ê´ú±í¶¥µã×éºÏ³É¾ØĞÎ
-			0, 1, 3, // µÚÒ»¸öÈı½ÇĞÎ
-			1, 2, 3  // µÚ¶ş¸öÈı½ÇĞÎ
+			// æ³¨æ„ç´¢å¼•ä»0å¼€å§‹! 
+			// æ­¤ä¾‹çš„ç´¢å¼•(0,1,2,3)å°±æ˜¯é¡¶ç‚¹æ•°ç»„verticesçš„ä¸‹æ ‡ï¼Œ
+			// è¿™æ ·å¯ä»¥ç”±ä¸‹æ ‡ä»£è¡¨é¡¶ç‚¹ç»„åˆæˆçŸ©å½¢
+			0, 1, 3, // ç¬¬ä¸€ä¸ªä¸‰è§’å½¢
+			1, 2, 3  // ç¬¬äºŒä¸ªä¸‰è§’å½¢
 		};
 
 		unsigned int VBO, VAO, EBO;
@@ -256,13 +339,13 @@ namespace satan
 		unsigned int texture;
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
-		//Îªµ±Ç°°ó¶¨µÄÎÆÀí¶ÔÏóÉèÖÃ»·ÈÆ¡¢¹ıÂË·½Ê½
+		//ä¸ºå½“å‰ç»‘å®šçš„çº¹ç†å¯¹è±¡è®¾ç½®ç¯ç»•ã€è¿‡æ»¤æ–¹å¼
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		//¼ÓÔØ²¢Éú³ÉÎÆÀí
+		//åŠ è½½å¹¶ç”Ÿæˆçº¹ç†
 		stbi_set_flip_vertically_on_load(flipY);
 		int width, height, nrChannels;
 		unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
