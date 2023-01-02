@@ -73,6 +73,7 @@
 #define GLFW_EXPOSE_NATIVE_WIN32
 #include "GLFW/glfw3native.h"   // for glfwGetWin32Window
 #endif
+#include <stdio.h>
 
 // We gather version tests as define in order to easily see which features are version-dependent.
 #define GLFW_VERSION_COMBINED           (GLFW_VERSION_MAJOR * 1000 + GLFW_VERSION_MINOR * 100 + GLFW_VERSION_REVISION)
@@ -459,7 +460,7 @@ static bool ImGui_ImplGlfw_Init(GLFWwindow* window, bool install_callbacks, Glfw
 {
 	ImGuiIO& io = ImGui::GetIO();
 	IM_ASSERT(io.BackendPlatformUserData == nullptr && "Already initialized a platform backend!");
-	//printf("GLFW_VERSION: %d.%d.%d (%d)", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION, GLFW_VERSION_COMBINED);
+	printf("GLFW_VERSION: %d.%d.%d (%d)", GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION, GLFW_VERSION_COMBINED);
 
 	// Setup backend capabilities flags
 	ImGui_ImplGlfw_Data* bd = IM_NEW(ImGui_ImplGlfw_Data)();

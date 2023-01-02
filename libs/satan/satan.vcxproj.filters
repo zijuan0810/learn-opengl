@@ -4,6 +4,8 @@
     <ClInclude Include="satan.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="log.h" />
-    <ClInclude Include="geometry.h" />
+    <ClInclude Include="Geometry.h" />
+    <ClInclude Include="ModelImporter.h" />
+    <ClInclude Include="Mesh.h" />
   </ItemGroup>
 </Project>

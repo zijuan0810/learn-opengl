@@ -16,7 +16,9 @@
 #include "stb_image.h"
 
 #include "log.h"
+#include "mesh.h"
 #include "geometry.h"
+#include "ModelImporter.h"
 
 
 namespace satan
@@ -293,7 +295,7 @@ namespace satan
 		init_imgui();
 	}
 
-	unsigned int get_texture(const char* filename, bool flipY)
+	unsigned int GetTexture(const char* filename, bool flipY)
 	{
 		unsigned int texture;
 		glGenTextures(1, &texture);

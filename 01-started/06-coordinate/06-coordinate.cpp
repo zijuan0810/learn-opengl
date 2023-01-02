@@ -13,10 +13,10 @@ int main(int argc, char* argv[])
 	glEnable(GL_DEPTH_TEST);
 
 	satan::shader shader("shader.vs.glsl", "shader.fs.glsl");
-	unsigned int cubeId = satan::get_cube();
+	unsigned int cubeId = satan::GetCube();
 	//unsigned int squareId = satan::get_square();
-	unsigned int textureId1 = satan::get_texture("../../res/textures/container.jpg", true);
-	unsigned int textureId2 = satan::get_texture("../../res/textures/awesomeface.png", true);
+	unsigned int textureId1 = satan::GetTexture("../../res/textures/container.jpg", true);
+	unsigned int textureId2 = satan::GetTexture("../../res/textures/awesomeface.png", true);
 
 	// Our state
 	bool show_demo_window = false;

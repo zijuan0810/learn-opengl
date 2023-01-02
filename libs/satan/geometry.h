@@ -4,6 +4,7 @@
 #include <glfw/glfw3.h>
 
 
+
 namespace satan
 {
 	unsigned int get_square()
@@ -51,7 +52,7 @@ namespace satan
 	}
 
 
-	unsigned int get_cube()
+	unsigned int GetCube()
 	{
 		float vertices[] = {
 			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,

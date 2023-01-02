@@ -12,8 +12,8 @@ int main(int argc, char* argv[])
 
 	satan::shader shader("shader.vs.glsl", "shader.fs.glsl");
 	unsigned int squareId = satan::get_square();
-	unsigned int textureId1 = satan::get_texture("../../res/textures/container.jpg", true);
-	unsigned int textureId2 = satan::get_texture("../../res/textures/grass.png", true);
+	unsigned int textureId1 = satan::GetTexture("../../res/textures/container.jpg", true);
+	unsigned int textureId2 = satan::GetTexture("../../res/textures/grass.png", true);
 
 	// Our state
 	bool show_demo_window = false;
