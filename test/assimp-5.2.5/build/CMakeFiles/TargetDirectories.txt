@@ -1,0 +1,13 @@
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/CMakeFiles/uninstall.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/CMakeFiles/UpdateAssimpLibsDebugSymbolsAndDLLs.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/CMakeFiles/INSTALL.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/CMakeFiles/ALL_BUILD.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/CMakeFiles/ZERO_CHECK.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/contrib/zlib/CMakeFiles/zlibstatic.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/contrib/zlib/CMakeFiles/INSTALL.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/contrib/zlib/CMakeFiles/ALL_BUILD.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/code/CMakeFiles/assimp.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/code/CMakeFiles/INSTALL.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/test/CMakeFiles/unit.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/test/CMakeFiles/INSTALL.dir
+D:/GitHub/learn-opengl/test/assimp-5.2.5/build/test/headercheck/CMakeFiles/INSTALL.dir

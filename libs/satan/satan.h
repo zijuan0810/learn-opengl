@@ -16,9 +16,7 @@
 #include "stb_image.h"
 
 #include "log.h"
-#include "mesh.h"
 #include "geometry.h"
-#include "ModelImporter.h"
 
 
 namespace satan

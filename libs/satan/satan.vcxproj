@@ -19,8 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="ModelImporter.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="log.h" />
     <ClInclude Include="satan.h" />
