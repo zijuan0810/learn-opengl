@@ -167,19 +167,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:\GitHub\learn-opengl\test\assimp-5.2.5\build\ZERO_CHECK.vcxproj">
-      <Project>{3831A186-EE0B-3EB1-BED5-8364CB173F48}</Project>
-      <Name>ZERO_CHECK</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </ProjectReference>
     <ProjectReference Include="D:\GitHub\learn-opengl\test\assimp-5.2.5\build\code\assimp.vcxproj">
       <Project>{92AA9844-617B-30CD-B642-7858A7FB09D3}</Project>
       <Name>assimp</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\GitHub\learn-opengl\test\assimp-5.2.5\build\test\unit.vcxproj">
-      <Project>{E4A7BFCF-40DC-3DD0-B114-E5C356FAAA77}</Project>
-      <Name>unit</Name>
     </ProjectReference>
     <ProjectReference Include="D:\GitHub\learn-opengl\test\assimp-5.2.5\build\contrib\zlib\zlibstatic.vcxproj">
       <Project>{41F71FB1-3DB5-3CC3-932D-B3DF5ABA3A7C}</Project>

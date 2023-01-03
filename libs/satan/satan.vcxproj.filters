@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="satan.h" />
-    <ClInclude Include="shader.h" />
-    <ClInclude Include="log.h" />
+    <ClInclude Include="Satan.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Log.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Camera.h" />
   </ItemGroup>
 </Project>

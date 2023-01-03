@@ -1,8 +1,8 @@
 //#define _CRT_SECURE_NO_WARNINGS
 //
 //#include "imgui/imgui.h"
-#include "satan/satan.h"
-#include "satan/shader.h"
+#include "satan/Satan.h"
+#include "satan/Shader.h"
 
 void process_input(GLFWwindow* window);
 
@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 
 	satan::init();
 
-	satan::shader shader("shader.vs.glsl", "shader.fs.glsl");
+	satan::Shader shader("shader.vs.glsl", "shader.fs.glsl");
 	unsigned int squareId = satan::get_square();
 	unsigned int textureId1 = satan::GetTexture("../../res/textures/container.jpg", true);
 	unsigned int textureId2 = satan::GetTexture("../../res/textures/grass.png", true);
@@ -84,10 +84,10 @@ int main(int argc, char* argv[])
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		shader.use();
+		shader.Use();
 		shader.setFloat("glfw_time", glfwGetTime());
-		shader.setInt("texture1", 0);
-		shader.setInt("texture2", 1);
+		shader.SetInt("texture1", 0);
+		shader.SetInt("texture2", 1);
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureId1);

@@ -14,12 +14,12 @@
 
 namespace satan
 {
-	class shader
+	class Shader
 	{
 	public:
 		unsigned int ID;
 
-		shader(const char* vertexPath, const char* fragmentPath)
+		Shader(const char* vertexPath, const char* fragmentPath)
 		{
 			// 1. retrieve the vertex/fragment source code from filepath
 			std::string vertexCode;
@@ -73,12 +73,12 @@ namespace satan
 			glDeleteShader(fragment);
 		}
 
-		~shader()
+		~Shader()
 		{
 			glDeleteProgram(ID);
 		}
 
-		void use()
+		void Use()
 		{
 			glUseProgram(this->ID);
 		}
@@ -89,7 +89,7 @@ namespace satan
 			glUniform1i(getUniform(name), (int)value);
 		}
 
-		void setInt(const std::string& name, int value)
+		void SetInt(const std::string& name, int value)
 		{
 			glUniform1i(getUniform(name), value);
 		}
@@ -104,7 +104,7 @@ namespace satan
 			glUniform3fv(getUniform(name), 1, glm::value_ptr(value));
 		}
 
-		void setMat4(const std::string& name, glm::mat4& value)
+		void setMat4(const std::string& name, const glm::mat4& value)
 		{
 			glUniformMatrix4fv(getUniform(name), 1, GL_FALSE, glm::value_ptr(value));
 		}

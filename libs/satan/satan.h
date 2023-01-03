@@ -8,19 +8,31 @@
 
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
-#include <learn/Shaders.h>
+#include <memory>
 #include <iostream>
 #include <filesystem>
+
+#include <glm/glm.hpp> // vec2, vec3, mat4, radians
+#include <glm/ext.hpp> // perspective, translate, rotate
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
 #include "log.h"
 #include "geometry.h"
+#include "Mesh.h"
+#include "Model.h"
+#include "Camera.h"
+
+#pragma warning (disable: 4244)
 
 
 namespace satan
 {
+	// settings
+	const unsigned int SCR_WIDTH = 800;
+	const unsigned int SCR_HEIGHT = 600;
+
 	static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
@@ -49,7 +61,7 @@ namespace satan
 		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 		float xscale, yscale;
 		glfwGetMonitorContentScale(monitor, &xscale, &yscale);
-		log::info("Monitor scale: %.2f x %.2f", xscale, yscale);
+		Log::info("Monitor scale: %.2f x %.2f", xscale, yscale);
 		if (xscale > 1 || yscale > 1) {
 			highDPIscaleFactor = xscale;
 			glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_TRUE);
@@ -58,7 +70,7 @@ namespace satan
 
 		window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 		if (window == nullptr) {
-			log::error("Failed to create GLFW Window");
+			Log::Error("Failed to create GLFW Window");
 			glfwTerminate();
 			return false;
 		}
@@ -75,7 +87,7 @@ namespace satan
 		glfwMakeContextCurrent(window);
 		glfwSwapInterval(1); // VSync
 
-		log::info("GLFW initialized");
+		Log::info("GLFW initialized");
 
 		return true;
 	}
@@ -86,15 +98,15 @@ namespace satan
 		// without it not all the OpenGL functions will be available,
 		// such as glGetString(GL_RENDERER), and application might just segfault
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-			log::error("Couldn't initialize GLAD");
+			Log::Error("Couldn't initialize GLAD");
 			return false;
 		}
 		else {
-			log::info("GLAD initialized");
+			Log::info("GLAD initialized");
 		}
 
-		log::info("OpenGL renderer: %s", glGetString(GL_RENDERER));
-		log::info("OpenGL from glad %d.%d", GLVersion.major, GLVersion.minor);
+		Log::info("OpenGL renderer: %s", glGetString(GL_RENDERER));
+		Log::info("OpenGL from glad %d.%d", GLVersion.major, GLVersion.minor);
 
 		return true;
 	}
@@ -283,7 +295,7 @@ namespace satan
 		//satan::set_imgui_style();
 		satan::set_imgui_style2(true, 0.5f);
 
-		log::info("ImGUI initialized");
+		Log::info("ImGUI initialized");
 	}
 
 	void init()
@@ -291,6 +303,9 @@ namespace satan
 		init_glfw();
 		init_glad();
 		init_imgui();
+
+		// tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
+		stbi_set_flip_vertically_on_load(true);
 	}
 
 	unsigned int GetTexture(const char* filename, bool flipY)
@@ -320,7 +335,7 @@ namespace satan
 			glGenerateMipmap(GL_TEXTURE_2D);
 		}
 		else {
-			log::error("Failed to load texture: %s", filename);
+			Log::Error("Failed to load texture: %s", filename);
 		}
 		stbi_image_free(data);
 		return texture;

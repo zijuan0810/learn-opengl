@@ -41,6 +41,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-model", "03-model", "{227178B6-4EC9-4326-81B7-92FDE1C72930}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01-assimp", "03-model\01-assimp\01-assimp.vcxproj", "{775B8FD2-943B-492E-B3D4-30FFD966C201}"
+	ProjectSection(ProjectDependencies) = postProject
+		{77EED9B3-16B4-40FD-BD1E-5D11A062D079} = {77EED9B3-16B4-40FD-BD1E-5D11A062D079}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

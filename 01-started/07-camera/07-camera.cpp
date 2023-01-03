@@ -1,9 +1,8 @@
-#include "satan/satan.h"
-#include "satan/shader.h"
+#include "satan/Satan.h"
+#include "satan/Shader.h"
 
-#include <memory>
-#include <glm/glm.hpp> // vec2, vec3, mat4, radians
-#include <glm/ext.hpp> // perspective, translate, rotate
+#pragma warning (disable: 4244)
+
 
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -38,7 +37,7 @@ int main(int argc, char* argv[])
 
 	glEnable(GL_DEPTH_TEST);
 
-	satan::shader shader("shader.vs.glsl", "shader.fs.glsl");
+	satan::Shader shader("shader.vs.glsl", "shader.fs.glsl");
 	unsigned int cubeId = satan::GetCube();
 	//unsigned int squareId = satan::get_square();
 	textureId1 = satan::GetTexture("../../res/textures/container.jpg", true);
@@ -122,10 +121,10 @@ int main(int argc, char* argv[])
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-		shader.use();
+		shader.Use();
 		shader.setFloat("glfw_time", glfwGetTime());
-		shader.setInt("texture1", 0);
-		shader.setInt("texture2", 1);
+		shader.SetInt("texture1", 0);
+		shader.SetInt("texture2", 1);
 
 		glm::quat r = glm::identity<glm::quat>();
 		r *= glm::angleAxis(glm::radians(rotation.x), glm::vec3(1.0, 0.0, 0.0f)); //x
@@ -262,7 +261,7 @@ void drop_callback(GLFWwindow* window, int count, const char** paths)
 {
 	for (int i = 0; i < count; i++)
 	{
-		satan::log::info(paths[i]);
+		satan::Log::info(paths[i]);
 		auto extension = std::filesystem::path(paths[i]).extension().string();
 		if (extension == ".png" || extension == ".jpg") {
 			if (i == 0)

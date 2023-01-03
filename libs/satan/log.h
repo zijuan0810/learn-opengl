@@ -5,7 +5,7 @@
 
 namespace satan
 {
-	class log
+	class Log
 	{
 	public:
 		static void info(const char* format, ...)
@@ -19,7 +19,7 @@ namespace satan
 			std::cout << "[I] " << buf << std::endl;
 		}
 
-		static void error(const char* format, ...)
+		static void Error(const char* format, ...)
 		{
 			va_list args;
 			char buf[2048];
