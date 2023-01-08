@@ -24,7 +24,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{92AA9844-617B-30CD-B642-7858A7FB09D3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>assimp</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -59,7 +59,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\bin\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\GitHub\learn-opengl\test\assimp-5.2.5\build\bin\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp-vc143-mtd</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir);$(SolutionDir)..\include;$(SolutionDir)..\code;$(SolutionDir)..;$(SolutionDir)..\contrib\zlib;$(SolutionDir)\contrib\zlib;$(SolutionDir)..\code\..\contrib\pugixml\src;$(SolutionDir)..\code\..\contrib\rapidjson\include;$(SolutionDir)..\code\..\contrib;$(SolutionDir)..\code\..\contrib\unzip;$(SolutionDir)..\code\..\contrib\openddlparser\include;$(SolutionDir)..\code\..\include;$(SolutionDir)\code\..\include;$(SolutionDir)..\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\GitHub\learn-opengl\test\assimp-5.2.5\build\include;D:\GitHub\learn-opengl\test\assimp-5.2.5\build;D:\GitHub\learn-opengl\test\assimp-5.2.5\include;D:\GitHub\learn-opengl\test\assimp-5.2.5\code;D:\GitHub\learn-opengl\test\assimp-5.2.5\.;D:\GitHub\learn-opengl\test\assimp-5.2.5\contrib\zlib;D:\GitHub\learn-opengl\test\assimp-5.2.5\build\contrib\zlib;D:\GitHub\learn-opengl\test\assimp-5.2.5\code\..\contrib\pugixml\src;D:\GitHub\learn-opengl\test\assimp-5.2.5\code\..\contrib\rapidjson\include;D:\GitHub\learn-opengl\test\assimp-5.2.5\code\..\contrib;D:\GitHub\learn-opengl\test\assimp-5.2.5\code\..\contrib\unzip;D:\GitHub\learn-opengl\test\assimp-5.2.5\code\..\contrib\openddlparser\include;D:\GitHub\learn-opengl\test\assimp-5.2.5\code\..\include;D:\GitHub\learn-opengl\test\assimp-5.2.5\build\code\..\include;D:\GitHub\learn-opengl\test\assimp-5.2.5\code\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -124,8 +124,8 @@
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>$(SolutionDir)/lib/Debug/assimp-vc143-mtd.lib</ImportLibrary>
-      <ProgramDataBaseFile>$(SolutionDir)/bin/Debug/assimp-vc143-mtd.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/GitHub/learn-opengl/test/assimp-5.2.5/build/lib/Debug/assimp-vc143-mtd.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/GitHub/learn-opengl/test/assimp-5.2.5/build/bin/Debug/assimp-vc143-mtd.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -914,6 +914,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\GitHub\learn-opengl\test\assimp-5.2.5\include\assimp\Compiler\pstdint.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="D:\GitHub\learn-opengl\test\assimp-5.2.5\build\ZERO_CHECK.vcxproj">
+      <Project>{3831A186-EE0B-3EB1-BED5-8364CB173F48}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
     <ProjectReference Include="D:\GitHub\learn-opengl\test\assimp-5.2.5\build\contrib\zlib\zlibstatic.vcxproj">
       <Project>{41F71FB1-3DB5-3CC3-932D-B3DF5ABA3A7C}</Project>
       <Name>zlibstatic</Name>

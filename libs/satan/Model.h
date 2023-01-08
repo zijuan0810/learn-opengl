@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <vector>
 #include <filesystem>
@@ -19,15 +19,27 @@ namespace satan
 	class Model
 	{
 	public:
-		Model(bool gama = false)
-			: m_IsGamma(gama)
+		Shader* m_Shader;
+		glm::vec3 m_Color;
+
+	public:
+		Model(Shader* shader, bool gama = false)
+			: m_Shader(shader)
+			, m_IsGamma(gama)
+			, m_Color(glm::vec3(1.0f, 1.0f, 1.0f))
 		{
 		}
 
-		void Draw(Shader& shader)
+		void Draw(const glm::mat4& model, const glm::mat4& view, const glm::mat4& proj)
 		{
+			m_Shader->Use();
+			m_Shader->setFloat3("u_color", m_Color);
+			m_Shader->setMat4("u_model", model);
+			m_Shader->setMat4("u_view", view);
+			m_Shader->setMat4("u_proj", proj);
+
 			for (int i = 0; i < m_Meshes.size(); ++i)
-				m_Meshes[i].Draw(shader);
+				m_Meshes[i].Draw(m_Shader);
 		}
 
 		unsigned int TextureFromFile(const char* path)

@@ -44,8 +44,8 @@ namespace satan
 		std::vector<Texture2D> Texture2Ds;
 
 	public:
-		Mesh(const std::vector<Vertex>& vertices, 
-			const std::vector<unsigned int>& indices, 
+		Mesh(const std::vector<Vertex>& vertices,
+			const std::vector<unsigned int>& indices,
 			const std::vector<Texture2D>& textures)
 		{
 			Vertices = vertices;
@@ -55,7 +55,7 @@ namespace satan
 			setupMesh();
 		}
 
-		void Draw(Shader& shader)
+		void Draw(Shader* shader)
 		{
 			unsigned int diffuseNr = 1;
 			unsigned int specularNr = 1;
@@ -75,11 +75,11 @@ namespace satan
 					number = std::to_string(normalNr++); // transfer unsigned int to string
 				else if (name == "texture_height")
 					number = std::to_string(heightNr++);
-				shader.SetInt(("material." + name + number).c_str(), i);
+				shader->SetInt(("material." + name + number).c_str(), i);
 				glBindTexture(GL_TEXTURE_2D, Texture2Ds[i].ID);
 			}
 
-			//绘制网格
+			//缁樺埗缃戞牸
 			glBindVertexArray(VAO);
 			glDrawElements(GL_TRIANGLES, (GLsizei)Indices.size(), GL_UNSIGNED_INT, 0);
 			glBindVertexArray(0);
@@ -103,13 +103,13 @@ namespace satan
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, Indices.size() * sizeof(unsigned int), &Indices[0], GL_STATIC_DRAW);
 
-			//顶点位置
+			//椤剁偣浣嶇疆
 			glEnableVertexAttribArray(0);
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
-			//顶点法线
+			//椤剁偣娉曠嚎
 			glEnableVertexAttribArray(1);
 			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Normal));
-			//纹理坐标
+			//绾圭悊鍧愭爣
 			glEnableVertexAttribArray(2);
 			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, UV));
 			//tangent

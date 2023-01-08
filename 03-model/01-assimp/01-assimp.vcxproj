@@ -133,6 +133,8 @@
     <ClCompile Include="01-assimp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shader-no-tex.frag" />
+    <None Include="shader-no-tex.vert" />
     <None Include="shader.frag" />
     <None Include="shader.vert" />
   </ItemGroup>

@@ -6,5 +6,7 @@
   <ItemGroup>
     <None Include="shader.frag" />
     <None Include="shader.vert" />
+    <None Include="shader-no-tex.frag" />
+    <None Include="shader-no-tex.vert" />
   </ItemGroup>
 </Project>

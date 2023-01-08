@@ -1,11 +1,11 @@
-#include "satan/Satan.h"
+﻿#include "satan/Satan.h"
 
 
 float deltaTime = 0.0f; // 当前帧与上一帧的时间差
 float lastFrame = 0.0f; // 上一帧的时间
 
-satan::Model model;
-satan::Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+satan::Model* model;
+satan::Camera camera(glm::vec3(0.0f, 0.0f, 60.0f));
 glm::vec3 rotation = glm::vec3(0.0);
 bool firstMouse = true;
 float lastX = 400;
@@ -27,8 +27,11 @@ int main(int argc, char* argv[])
 
 	glEnable(GL_DEPTH_TEST);
 
-	satan::Shader shader("shader.vert", "shader.frag");
-	model.Load("../../res/objects/backpack/backpack.obj");
+	//satan::Shader shader("shader.vert", "shader.frag");
+	satan::Shader shaderNoTex("shader-no-tex.vert", "shader-no-tex.frag");
+	model = new satan::Model(&shaderNoTex);
+	//model->Load("../../res/objects/backpack/backpack.obj");
+	model->Load("../../res/models/cube.fbx");
 
 	// Our state
 	bool show_demo_window = false;
@@ -69,10 +72,6 @@ int main(int argc, char* argv[])
 			//ImGui::ColorEdit3("Color", (float*)&clear_color); // Edit 3 floats representing a color
 			ImGui::ColorEdit3("Color", glm::value_ptr(color)); // Edit 3 floats representing a color
 
-			if (ImGui::Button("Load FBX"))
-			{
-			}
-
 			ImGui::Text("Application %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 			ImGui::End();
 		}
@@ -86,27 +85,19 @@ int main(int argc, char* argv[])
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-		shader.Use();
-		shader.setFloat3("u_color", color);
-
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)satan::SCR_WIDTH / (float)satan::SCR_HEIGHT, 0.1f, 100.0f);
-		shader.setMat4("u_proj", projection);
-		shader.setMat4("u_view", camera.GetViewMatrix());
-
 		glm::quat rorateQuat = glm::identity<glm::quat>();
 		rorateQuat *= glm::angleAxis(glm::radians(rotation.x), glm::vec3(1.0, 0.0, 0.0f)); //x
 		rorateQuat *= glm::angleAxis(glm::radians(rotation.y), glm::vec3(0.0, 1.0, 0.0f)); //y
 		rorateQuat *= glm::angleAxis(glm::radians(rotation.z), glm::vec3(0.0, 0.0, 1.0f)); //z
-
-		// render the loaded model
 		glm::mat4 modelMat4 = glm::mat4(1.0f);
 		modelMat4 = glm::translate(modelMat4, move);
 		modelMat4 = glm::mat4_cast(rorateQuat) * modelMat4;
 		modelMat4 = glm::scale(modelMat4, scale);
-		shader.setMat4("u_model", modelMat4);
-		model.Draw(shader);
-	
+		model->m_Color = color;
+		model->Draw(modelMat4, camera.GetViewMatrix(), projection);
+
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(satan::window);
@@ -185,7 +176,7 @@ void drop_callback(GLFWwindow* window, int count, const char** paths)
 	{
 		satan::Log::info(paths[i]);
 		auto extension = std::filesystem::path(paths[i]).extension().string();
-		model.Load(paths[i]);
+		model->Load(paths[i]);
 		/*if (extension == ".png" || extension == ".jpg") {
 			if (i == 0)
 				textureId1 = satan::GetTexture(paths[i], true);
