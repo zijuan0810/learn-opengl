@@ -4,8 +4,10 @@
 float deltaTime = 0.0f; // 当前帧与上一帧的时间差
 float lastFrame = 0.0f; // 上一帧的时间
 
+glm::vec3 cameraPosition(0.0f, 0.0f, 60.0f);
+
 satan::Model* model;
-satan::Camera camera(glm::vec3(0.0f, 0.0f, 60.0f));
+satan::Camera camera(cameraPosition);
 glm::vec3 rotation = glm::vec3(0.0);
 bool firstMouse = true;
 float lastX = 400;
@@ -37,8 +39,8 @@ int main(int argc, char* argv[])
 	bool show_demo_window = false;
 	ImVec4 clear_color = ImVec4(0.2f, 0.3f, 0.3f, 1.0f);
 
-	glm::vec3 move = glm::vec3(0.0f);
-	glm::vec3 scale = glm::vec3(1.0f);
+	//glm::vec3 move = glm::vec3(0.0f);
+	glm::vec3 scale = glm::vec3(0.2f, 0.2f, 0.2f);
 	glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	while (!glfwWindowShouldClose(satan::window))
@@ -65,7 +67,7 @@ int main(int argc, char* argv[])
 
 			ImGui::Begin("Tools");                          // Create a window called "Hello, world!" and append into it.
 
-			ImGui::DragFloat3("Move", glm::value_ptr(move), 0.01f, -1.0f, 1.0f);
+			ImGui::DragFloat3("Move", glm::value_ptr(cameraPosition), 0.01f, -1000.0f, 1000.0f);
 			ImGui::DragFloat3("Rotate", glm::value_ptr(rotation), 1.0f, -360.0f, 360.0f);
 			ImGui::DragFloat3("Scale", glm::value_ptr(scale), 0.01f, -10.0f, 10.0f);
 
@@ -92,7 +94,7 @@ int main(int argc, char* argv[])
 		rorateQuat *= glm::angleAxis(glm::radians(rotation.y), glm::vec3(0.0, 1.0, 0.0f)); //y
 		rorateQuat *= glm::angleAxis(glm::radians(rotation.z), glm::vec3(0.0, 0.0, 1.0f)); //z
 		glm::mat4 modelMat4 = glm::mat4(1.0f);
-		modelMat4 = glm::translate(modelMat4, move);
+		//modelMat4 = glm::translate(modelMat4, move);
 		modelMat4 = glm::mat4_cast(rorateQuat) * modelMat4;
 		modelMat4 = glm::scale(modelMat4, scale);
 		model->m_Color = color;
