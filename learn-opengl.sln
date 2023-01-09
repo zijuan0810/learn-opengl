@@ -50,6 +50,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imguizmo", "libs\imguizmo\i
 		{46AF5AA3-C5EC-433A-9439-D2FD98456380} = {46AF5AA3-C5EC-433A-9439-D2FD98456380}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-lighting", "02-lighting", "{369BE60A-9C8E-4B0A-88FC-0471823A1A78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
