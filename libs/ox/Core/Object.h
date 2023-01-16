@@ -21,88 +21,18 @@ namespace ox
 		int m_InsID;
 
 	public:
-		Object()
-			: m_Position(glm::vec3(0.0f))
-			, m_Scale(glm::vec3(1.0f))
-			, m_Rotation(glm::vec3(0.0f))
-		{
-		}
-
-		~Object()
-		{
-			for (auto it = m_Children.begin(); it != m_Children.end(); ++it)
-				delete* it;
-			m_Children.clear();
-		}
+		Object();
+		~Object();
 
 	public:
-		bool AddChild(Object* child)
-		{
-			auto it = std::find_if(m_Children.begin(), m_Children.end(), [child](Object* obj) {
-				return obj->m_InsID == child->m_InsID;
-			});
-			if (it != m_Children.end())
-			{
-				Log::Error("There has child %d", (*it)->m_InsID);
-				return false;
-			}
+		bool AddChild(Object* child);
+		bool RemoveChild(Object* child);
 
-			child->m_InsID = ++_ID;
-			child->m_Parent = this;
-			m_Children.push_back(child);
+		void Translate(glm::vec3 translation);
 
-			return false;
-		}
-
-		bool RemoveChild(Object* child)
-		{
-			auto it = std::find_if(m_Children.begin(), m_Children.end(), [child](Object* obj) {
-				return obj->m_InsID == child->m_InsID;
-			});
-			if (it != m_Children.end())
-			{
-				m_Children.erase(it);
-				return true;
-			}
-
-			return false;
-		}
-
-		void Translate(glm::vec3 translation)
-		{
-		}
-
-		glm::quat GetQuat()
-		{
-			glm::quat quat = glm::identity<glm::quat>();
-			quat *= glm::angleAxis(glm::radians(m_Rotation.x), glm::vec3(1.0, 0.0, 0.0f)); //x
-			quat *= glm::angleAxis(glm::radians(m_Rotation.y), glm::vec3(0.0, 1.0, 0.0f)); //y
-			quat *= glm::angleAxis(glm::radians(m_Rotation.z), glm::vec3(0.0, 0.0, 1.0f)); //z
-			return quat;
-		}
-
-		glm::mat4 GetModelMatrix()
-		{
-			glm::mat4 model = glm::mat4(1.0f);
-			model = glm::translate(model, m_Position);
-			model = glm::mat4_cast(GetQuat()) * model;
-			model = glm::scale(model, m_Scale);
-			return model;
-		}
-
-		glm::mat4 GetLocalToWorldMatrix()
-		{
-			glm::mat4 matrix = GetModelMatrix();
-
-			Object* parent = m_Parent;
-			while (parent != nullptr)
-			{
-				matrix *= parent->GetLocalToWorldMatrix();
-				parent = parent->m_Parent;
-			}
-
-			return matrix;
-		}
+		glm::quat GetQuat();
+		glm::mat4 GetModelMatrix();
+		glm::mat4 GetLocalToWorldMatrix();
 
 	private:
 		static int _ID;

@@ -1,8 +1,4 @@
-#pragma once
-
-#include <glad/glad.h>
-#include <glfw/glfw3.h>
-
+﻿#pragma once
 
 namespace ox
 {
@@ -14,18 +10,7 @@ namespace ox
 		static float lastFrame; // 上一帧的时间
 
 	public:
-		static void Init()
-		{
-			currTime = 0.0f;
-			deltaTime = 0.0f;
-			lastFrame = 0.0f;
-		}
-
-		static void Update()
-		{
-			currTime = static_cast<float>(glfwGetTime());
-			deltaTime = currTime - lastFrame;
-			lastFrame = currTime;
-		}
+		static void Init();
+		static void Update();
 	};
 }

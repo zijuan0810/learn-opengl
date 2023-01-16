@@ -2,6 +2,8 @@
 
 #include "Object.h"
 #include "Shader.h"
+#include <glad/glad.h>
+#include <glfw/glfw3.h>
 
 namespace ox
 {

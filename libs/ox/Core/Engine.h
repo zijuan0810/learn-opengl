@@ -28,11 +28,7 @@ namespace ox
 		float m_DPIFactor = 1.0;
 		
 	public:
-		static Engine* Ins()
-		{
-			static Engine engine;
-			return &engine;
-		}
+		static Engine* Ins();
 
 	public:
 		void Init(Scene* scene)
@@ -91,7 +87,9 @@ namespace ox
 
 		void EndedRender()
 		{
-			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			ImDrawData* drawData = ImGui::GetDrawData();
+			if (drawData != nullptr)
+				ImGui_ImplOpenGL3_RenderDrawData(drawData);
 
 			glfwSwapBuffers(m_Window);
 			glfwPollEvents();
